@@ -4,20 +4,6 @@ import * as ReactDOM from "react-dom/client"
 import { App } from "./App"
 import reportWebVitals from "./reportWebVitals"
 import * as serviceWorker from "./serviceWorker"
-import { Buffer } from 'buffer';
-//import * as crypto from 'crypto-browserify';
-
-global.Buffer = Buffer;
-//global.crypto = require.resolve("crypto-browserify"); //require('crypto');
-// Object.assign(fallback, {
-//   crypto: require.resolve("crypto-browserify"),
-//   stream: require.resolve("stream-browserify"),
-//   assert: require.resolve("assert"),
-//   http: require.resolve("stream-http"),
-//   https: require.resolve("https-browserify"),
-//   os: require.resolve("os-browserify"),
-//   url: require.resolve("url"),
-// });
 
 const container = document.getElementById("root")
 if (!container) throw new Error('Failed to find the root element');
