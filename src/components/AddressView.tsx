@@ -13,22 +13,22 @@ export const AddressView = ({chain, slip, items}: any) => {
           <TableCaption>{chain} (SLIP0044: {slip})</TableCaption>
           <Thead>
             <Tr>
-              <Th>Private Key</Th>
               <Th>Address</Th>
+              <Th>Private Key</Th>
             </Tr>
           </Thead>
           <Tbody>
             {items.map((item: Address, index: number) => (
                 <Tr>
-                    <Td>{item.privateKey}</Td>
                     <Td>{item.address}</Td>
+                    <Td>{item.privateKey}</Td>
                 </Tr>
             ))}
           </Tbody>
           <Tfoot>
             <Tr>
-              <Th>Private Key</Th>
               <Th>Address</Th>
+              <Th>Private Key</Th>
             </Tr>
           </Tfoot>
         </Table>

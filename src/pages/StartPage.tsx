@@ -19,25 +19,25 @@ export const StartPage = () => {
     let countdownApi: CountdownApi | null = null;
     const setRef = (countdown: Countdown | null): void => {
         if (countdown) {
-          countdownApi = countdown.getApi();
+            countdownApi = countdown.getApi();
         }
-      };
-    
+    };
+
     const refresh = () => {
         setRefreshing(true);
         let found: boolean = false;
-        try{
+        try {
             const newItems = ViewData.ethGenerator?.generate();
-            if(newItems) {
+            if (newItems) {
                 setItems([...newItems]);
                 found = EthUtils.found(newItems, ViewData.EthAddrs);
             }
         }
-        finally{
+        finally {
             setRefreshing(false);
-            if(!found){
+            if (!found) {
                 setCountdownData(Date.now() + autoSeconds * 1000);
-                if(countdownApi) countdownApi.start();
+                if (countdownApi) countdownApi.start();
             }
         }
     }
@@ -48,10 +48,10 @@ export const StartPage = () => {
         // };
         // You need to restrict it at some point
         // This is just dummy code and should be replaced by actual
-        if(!ViewData.ethGenerator)
+        if (!ViewData.ethGenerator)
             ViewData.ethGenerator = new EthGenerator();
         refresh();
-      }, []);
+    }, []);
 
     return (
         <VStack spacing={4}>
