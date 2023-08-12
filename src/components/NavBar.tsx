@@ -71,6 +71,7 @@ export const NavBar = () => {
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
               <Link as={ReactLink} to={RoutesData.Home}>Home</Link>
               {account && account.length > 5 ? <Link as={ReactLink} to={RoutesData.Start}>Start</Link> : <Link as={ReactLink} to={RoutesData.Guest}>Guest</Link>}
+              <Link as={ReactLink} to={RoutesData.Info}>Info</Link>
             </HStack>
           </HStack>
 
@@ -113,6 +114,7 @@ export const NavBar = () => {
           <Stack as={'nav'} spacing={4}>
             <Link as={ReactLink} to={RoutesData.Home}>Home</Link>
             {account && account.length > 5 ? <Link as={ReactLink} to={RoutesData.Start}>Start</Link> : <Link as={ReactLink} to={RoutesData.Guest}>Guest</Link>}
+            <Link as={ReactLink} to={RoutesData.Info}>Info</Link>
           </Stack>
         </Box>
       ) : null}

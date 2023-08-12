@@ -9,6 +9,7 @@ import { StartPage } from "./pages/StartPage"
 import { RoutesData } from "./data/RoutesData"
 import { HomePage } from "./pages/HomePage"
 import { GuestPage } from "./pages/GuestPage"
+import { InfoPage } from "./pages/InfoPage"
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -17,6 +18,7 @@ export const App = () => (
         <Routes>
           <Route path={RoutesData.Home} element={<HomePage />} />
           <Route path={RoutesData.Guest} element={<GuestPage />} />
+          <Route path={RoutesData.Info} element={<InfoPage />} />
           <Route path={RoutesData.Start} element={<StartPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
