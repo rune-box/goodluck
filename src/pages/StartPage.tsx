@@ -10,11 +10,13 @@ import { AddressView } from "../components/AddressView";
 import Countdown, { CountdownApi } from 'react-countdown';
 import { SecondsCountdown } from "../components/SecondsCountdown";
 import { EthUtils } from "../utils/EthUtils";
+import { FaPause, FaPlay } from "react-icons/fa";
 
 export const StartPage = () => {
     const [autoSeconds, setAutoSeconds] = React.useState(3);
     const [countdownDate, setCountdownData] = React.useState(Date.now() + 1000);
     const [refreshing, setRefreshing] = React.useState(false);
+    const [paused, setPaused] = React.useState(false);
     const [items, setItems] = React.useState(new Array<Address>());
     let countdownApi: CountdownApi | null = null;
     const setRef = (countdown: Countdown | null): void => {
@@ -24,13 +26,20 @@ export const StartPage = () => {
     };
 
     const refresh = () => {
+        if(paused){
+            return;
+        }
+
         setRefreshing(true);
         let found: boolean = false;
         try {
             const newItems = ViewData.ethGenerator?.generate();
             if (newItems) {
                 setItems([...newItems]);
-                found = EthUtils.found(newItems, ViewData.EthAddrs);
+                found = EthUtils.find(newItems, ViewData.EthAddrs);
+                if(found){
+                    switchStatus();
+                }
             }
         }
         finally {
@@ -39,6 +48,19 @@ export const StartPage = () => {
                 setCountdownData(Date.now() + autoSeconds * 1000);
                 if (countdownApi) countdownApi.start();
             }
+        }
+    }
+    
+    const switchStatus = () => {
+        if(paused){
+            setPaused(false);
+            
+            setCountdownData(Date.now() + autoSeconds * 1000);
+            if (countdownApi) countdownApi.start();
+        }
+        else{
+            setPaused(true);
+            if (countdownApi) countdownApi.pause();
         }
     }
 
@@ -69,9 +91,11 @@ export const StartPage = () => {
                 </Select>
             </HStack> */}
             {/* <Progress value={progress as number} height="2px" w="100%" onEnded={refresh} /> */}
-            <Countdown date={countdownDate} renderer={SecondsCountdown} onComplete={refresh}
+            <Button leftIcon={paused ? <FaPlay/> : <FaPause/>} onClick={switchStatus}></Button>
+            <Countdown key="countdown_goodluck" date={countdownDate} renderer={SecondsCountdown} onComplete={refresh}
                 ref={setRef}></Countdown>
             <AddressView items={items} chain="Ethereum" slip="60" />
+            <Button leftIcon={paused ? <FaPlay/> : <FaPause/>} onClick={switchStatus}></Button>
             <Footer />
         </VStack>
     );

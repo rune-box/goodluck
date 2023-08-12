@@ -9,7 +9,7 @@ export class EthUtils {
     //     // return "0x"+id;
     // }
 
-    static found(items: Array<Address>, checklist: Array<string>){
+    static find(items: Array<Address>, checklist: Array<string>){
         if(!items || !checklist) return false;
         items.forEach(addr => {
             const index = checklist.indexOf(addr.address);
