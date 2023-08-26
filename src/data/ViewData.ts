@@ -12,6 +12,7 @@ export class ViewData {
     static ethGenerator: EthGenerator | null;
     static EthAddrs = ["0xdead000000000000000042069420694206942069",
         "0xdeaddeaddeaddeaddeaddeaddeaddeaddeaddead",
-        "0x4206942069420694206942069420694206942069"
+        "0x4206942069420694206942069420694206942069",
+        "0x8888888888888888888888888888888888888888"
     ];
 }
